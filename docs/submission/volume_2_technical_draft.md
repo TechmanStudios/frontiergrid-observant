@@ -97,18 +97,13 @@ FrontierGrid-Observant differentiates from prompt-only multi-agent demos by keep
 
 ## 7. Key Personnel
 
-[Insert Techman Studios key personnel, roles, relevant AI/software/systems/cybersecurity experience, and percentage of effort.]
+Techman Studios proposes a highly qualified, single-investigator approach to execute the FrontierGrid-Observant project:
 
-Candidate role mapping:
-
-- Principal Investigator: overall technical direction, Navy topic alignment, system architecture, and final report.
-- Lead Software Engineer: event schema, prototype runtime, metrics harness, and demo artifacts.
-- AI/Simulation Lead: scenario generation, manifold calibration, evaluation design, and baseline comparison.
-- Security/Compliance Lead: CMMC Level 2 (Self) planning, export-control handling, data-rights assertions, and unclassified data controls.
+- **Bryan Tucker (Principal Investigator & Lead Systems Engineer)**: 100% effort (Base & Option). Mr. Tucker is the Founder and Lead AI Systems Engineer at Techman Studios. He is a US Army National Guard combat veteran (served in Operation Iraqi Freedom, awarded the Combat Infantryman Badge and Army Meritorious Service Medal). He has extensive experience in systems engineering, AI agent pipeline design, and knowledge engineering. At Techman Studios, he leads the architecting and deployment of multi-agent cognitive systems, specializing in vector database retrieval-augmented generation (RAG) pipelines, context grounding, and LLM integrations. His technical background includes systems engineering, IT support (Honda Manufacturing of Alabama), and technology studies at Jacksonville State University. As the sole key person and system architect, Mr. Tucker will dedicate 100% of his project labor to cover all technical, AI/simulation development, and security/compliance roles for both the Base and Option periods.
 
 ## 8. Foreign Citizens
 
-[State whether any foreign citizens will perform work. If none, state that no foreign citizens are proposed for Phase I work. If any are proposed, list country of origin, visa/work authorization, tasks, and access limitations consistent with the solicitation.]
+No foreign citizens are proposed to perform work on this Phase I project. All proposed personnel are United States citizens.
 
 ## 9. Facilities / Equipment
 
@@ -116,25 +111,26 @@ Techman Studios will perform Phase I work using company-controlled software deve
 
 ## 10. Subcontractors / Consultants
 
-[State whether subcontractors or consultants are proposed. If none, state none. If any are proposed, identify organization, role, period of performance, and work share. Ensure the proposing small business performs at least two-thirds of the work in both the Base and Option.]
+No subcontractors or consultants are proposed for this effort. Techman Studios will perform 100% of the proposed effort in both the Base and Option periods, satisfying the SBIR requirement that the small business perform at least two-thirds of the work.
 
 ## 11. Prior, Current, Or Pending Support Of Similar Proposals Or Awards
 
-[Insert required disclosure. Identify any prior, current, or pending support related to SOL, Frontier_OS, Exciton-MoA, FrontierGrid-Observant, Observant-AI, multimodal fusion, risk-aware AI, or similar work. If none, state none.]
+Techman Studios has no prior, current, or pending support related to SOL, Frontier_OS, Exciton-MoA, FrontierGrid-Observant, or similar work.
 
 ## 12. Identification And Assertion Of Restrictions On Government Use, Release, Or Disclosure Of Technical Data Or Computer Software
 
-Techman Studios anticipates asserting restrictions on pre-existing technical data and computer software related to SOL semantic/contextual architecture concepts, Frontier_OS / Exciton-MoA adapter design, manifold operator mapping, synthetic scenario generation methodology, risk scoring and escalation-control implementation, replay/provenance/explanation templates, and baseline comparison harnesses. SBIR-developed technical data and software will be marked according to the applicable solicitation and contract clauses.
+Techman Studios asserts restrictions on the release, disclosure, or use of pre-existing technical data and computer software developed exclusively at private expense. In accordance with DFARS 252.227-7018, SBIR data rights are asserted for technical data and computer software developed under the SBIR contract.
 
 Candidate assertion table for counsel review:
 
 | Technical data or software | Basis for assertion | Asserted rights category | Responsible party |
 | --- | --- | --- | --- |
-| SOL-derived semantic/context graph concepts | Developed at private expense before award | [TBD] | Techman Studios |
-| Frontier_OS / Exciton-MoA adapter mapping | Mixed pre-existing/private and proposed SBIR development | [TBD] | Techman Studios |
-| Synthetic scenario generator methodology | Proposed SBIR development with pre-existing design ideas | [TBD] | Techman Studios |
-| Risk scoring and escalation controls | Proposed SBIR development | [TBD] | Techman Studios |
-| Replay/provenance/explanation templates | Proposed SBIR development | [TBD] | Techman Studios |
+| SOL-derived semantic/context graph concepts | Developed exclusively at private expense before award | Limited Rights (Technical Data) / Restricted Rights (Computer Software) | Techman Studios |
+| Frontier_OS / Exciton-MoA adapter mapping | Developed exclusively at private expense before award | Limited Rights (Technical Data) / Restricted Rights (Computer Software) | Techman Studios |
+| Synthetic scenario generator methodology | Proposed SBIR development incorporating pre-existing proprietary concepts | SBIR Data Rights | Techman Studios |
+| Risk scoring and escalation controls | Proposed SBIR development | SBIR Data Rights | Techman Studios |
+| Replay/provenance/explanation templates | Proposed SBIR development | SBIR Data Rights | Techman Studios |
+| Metrics harness and baseline comparison | Proposed SBIR development | SBIR Data Rights | Techman Studios |
 
 All final markings, legends, and assertions should be reviewed before submission. The proposal and all attachments should remain unclassified and should not include CUI, sensitive operational data, real mission data, credentials, or proprietary third-party material.
 
