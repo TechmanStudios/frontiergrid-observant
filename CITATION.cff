@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+title: FrontierGrid-Observant
+message: "If this research scaffold contributes to published work, cite it using this metadata and verify current authorship before release."
+type: software
+authors:
+  - name: Techman Studios
+version: 0.1.0
+date-released: 2026-05-19
+license: proprietary

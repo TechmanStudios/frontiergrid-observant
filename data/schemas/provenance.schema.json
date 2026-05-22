@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReplayTrace",
+  "type": "object",
+  "required": ["alert_id", "timeline", "context_summary"],
+  "properties": {
+    "alert_id": { "type": "string" },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["tick", "event_id", "state_delta", "dominant_agent", "confidence_delta"],
+        "properties": {
+          "tick": { "type": "integer", "minimum": 0 },
+          "event_id": { "type": "string" },
+          "state_delta": { "type": "string" },
+          "dominant_agent": { "type": "string" },
+          "confidence_delta": { "type": "number" }
+        }
+      }
+    },
+    "context_summary": { "type": "object" }
+  }
+}

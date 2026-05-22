@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AlertCard",
+  "type": "object",
+  "required": ["alert_id", "scenario_id", "tick", "title", "risk_type", "severity", "confidence", "data_quality", "status", "supporting_events", "contradicting_events", "agent_votes", "agent_evidence", "explanation"],
+  "properties": {
+    "alert_id": { "type": "string" },
+    "scenario_id": { "type": "string" },
+    "tick": { "type": "integer", "minimum": 0 },
+    "title": { "type": "string" },
+    "risk_type": { "type": "string" },
+    "severity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "data_quality": { "type": "number", "minimum": 0, "maximum": 1 },
+    "status": { "enum": ["observe", "review_recommended", "human_escalation_review"] },
+    "supporting_events": { "type": "array", "items": { "type": "string" } },
+    "contradicting_events": { "type": "array", "items": { "type": "string" } },
+    "agent_votes": { "type": "object", "additionalProperties": { "type": "number" } },
+    "agent_evidence": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["agent_name", "score", "confidence", "evidence_event_ids", "summary", "notes", "trace"],
+        "properties": {
+          "agent_name": { "type": "string" },
+          "score": { "type": "number", "minimum": 0, "maximum": 1 },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+          "evidence_event_ids": { "type": "array", "items": { "type": "string" } },
+          "summary": { "type": "string" },
+          "notes": { "type": "array", "items": { "type": "string" } },
+          "trace": { "type": "object" }
+        }
+      }
+    },
+    "explanation": { "type": "string" }
+  }
+}

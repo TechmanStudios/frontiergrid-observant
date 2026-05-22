@@ -1,0 +1,1 @@
+"""Lightweight deterministic agent roles."""

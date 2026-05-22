@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MetricReport",
+  "type": "object",
+  "required": ["scenario_id", "confusion", "analytic_completeness", "uniqueness", "validity", "consistency", "accuracy_under_noise"],
+  "properties": {
+    "scenario_id": { "type": "string" },
+    "substrate": { "type": "string" },
+    "confusion": {
+      "type": "object",
+      "required": ["true_positive", "false_positive", "true_negative", "false_negative"],
+      "properties": {
+        "true_positive": { "type": "integer", "minimum": 0 },
+        "false_positive": { "type": "integer", "minimum": 0 },
+        "true_negative": { "type": "integer", "minimum": 0 },
+        "false_negative": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "analytic_completeness": { "type": "number", "minimum": 0, "maximum": 1 },
+    "uniqueness": { "type": "number", "minimum": 0, "maximum": 1 },
+    "validity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "consistency": { "type": "number", "minimum": 0, "maximum": 1 },
+    "accuracy_under_noise": { "type": "number", "minimum": 0, "maximum": 1 }
+  }
+}
