@@ -60,31 +60,16 @@ This keeps the Phase I implementation bounded and auditable while preserving the
 
 The active integration path lives in `frontiergrid_observant/runtime/manifold_bridge.py` and `frontiergrid_observant/runtime/frontier_os_adapter.py`.
 
-Current event flow for `--substrate frontier_os`:
+The codebase has been fully consolidated into a single working workspace. All components from the external `Frontier_OS` and `SOL` repositories are natively integrated into the package structure, removing dynamic imports and path modifications:
 
-1. Resolve `FRONTIER_OS_ROOT` or the sibling backup repo path.
-2. Dynamically import `BlankManifoldCore`, `StatisticalPrism`, `ExcitonEngine`, and `OntologicalOrchestrator`.
-3. Generate a small deterministic manifold, defaulting to `FRONTIER_OS_NODE_COUNT=128`.
-4. Convert each Observant event into a calibrated embedding.
-5. Broadcast through `StatisticalPrism.global_resonance_broadcast()`.
-6. Run `ExcitonEngine.ignite_excitons()`.
-7. Run `OntologicalOrchestrator.scan_manifold()`.
-8. Feed target coordinates, active node count, peak resonance, hotspot pressure, burst count, and scan-order fingerprint back into `SubstrateTrace.manifold_metrics` and `ContextState.substrate_metrics`.
+1. **SOLEngine Subpackage**: Nested under [frontiergrid_observant/sol/](file:///g:/aiDoW/DON/DON26BZ01-NVO23/frontiergrid-observant/frontiergrid_observant/sol/).
+2. **Exciton-MoA Subpackage**: Nested under [frontiergrid_observant/exciton_moa/](file:///g:/aiDoW/DON/DON26BZ01-NVO23/frontiergrid-observant/frontiergrid_observant/exciton_moa/).
 
-Frontier_OS backup components identified for future optional integration:
+### Event Flow for `--substrate frontier_os` (Observant-SOL Integration)
 
-- `../Frontier_OS-main/Frontier_OS-main/Exciton-MoA/hardWare/blank_manifold_core.py`: `BlankManifoldCore`.
-- `../Frontier_OS-main/Frontier_OS-main/Exciton-MoA/transDucer/statisticalPrism.py`: `StatisticalPrism`.
-- `../Frontier_OS-main/Frontier_OS-main/Exciton-MoA/firmWare/ExcitonEngine/excitons.py`: `ExcitonEngine` and the seven contextual operators.
-- `../Frontier_OS-main/Frontier_OS-main/Exciton-MoA/teleMetry/telemetry.py`: `OntologicalOrchestrator`.
-- `../Frontier_OS-main/Frontier_OS-main/Exciton-MoA/entangled_manifolds.py`: `EntangledSOLPair`.
-- `../Frontier_OS-main/Frontier_OS-main/Exciton-MoA/teleMetry/hippocampalReplay.py`: `HippocampalReplay`.
-
-SOL backup components that can inform semantic graph design:
-
-- `../sol-main/sol-main/tools/sol-core/sol_engine.py`.
-- `../sol-main/sol-main/tools/sol-core/default_graph.json`.
-- `../sol-main/sol-main/tools/sol-hippocampus/memory_store.py`.
-- `../sol-main/sol-main/tools/analysis/metrics.py`.
-
-For this local ephemeral prototype, Techman Studios-owned Frontier_OS / SOL / Exciton-MoA integration is authorized when useful. Keep integration behind the adapter boundary where practical because the backup layout is double-nested and imported dynamically through `sys.path`. Revisit final licensing, data-rights, and distribution language before public release or proposal delivery.
+1. Convert each incoming Observant event into a calibrated embedding.
+2. Broadcast the embedding through the `StatisticalPrism` to locate the resonance coordinates in the 3D space.
+3. Ignite exciton operators using `ExcitonEngine`.
+4. Scan the manifold using the `OntologicalOrchestrator` to capture local resonance hotspots.
+5. Step the `SOLEngine` by injecting normalized risk and metadata signals to update belief states.
+6. Feed the resulting manifold metrics (peak resonance, active node counts, coordinates, etc.) and low-entropy `sol_intuition` consensus details directly into the multi-agent reasoning trace.

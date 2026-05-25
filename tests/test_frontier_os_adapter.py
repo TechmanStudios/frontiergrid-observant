@@ -61,3 +61,45 @@ def test_frontier_os_alert_exports_native_agent_evidence() -> None:
     assert "peak_resonance" in alert["agent_evidence"]["watcher"]["trace"]
     assert "hotspot_total" in alert["agent_evidence"]["risk_officer"]["trace"]
     assert "lineage_weight" in alert["agent_evidence"]["explainer"]["trace"]
+    assert "sol_intuition" in alert["agent_evidence"]["integrator"]["trace"]
+    assert "hunch" in alert["agent_evidence"]["integrator"]["trace"]["sol_intuition"]
+
+
+def test_all_seven_giants_are_active_and_functional() -> None:
+    events = generate_scenario("scenario_01", seed=149, ticks=15)
+    adapter = FrontierOSAdapter(_frontier_os_root(), node_count=128, tau_threshold=1.0)
+    adapter.initialize(events[0].scenario_id)
+
+    # Ingest events to ignite excitons
+    for event in events:
+        adapter.ingest_event(event)
+
+    # Verify that the mediator has recorded projections from the giants
+    bridge = adapter.bridge
+    assert bridge is not None
+    assert bridge.mediator is not None
+
+    # Collect all projecting giants that wrote to the blackboard
+    projected_giants = set()
+    for entries in bridge.mediator._blackboard.values():
+        for entry in entries:
+            projected_giants.add(entry.giant_name)
+
+    expected_projected_giants = {
+        "The Statistician",
+        "The Optimizer",
+        "The Graph Navigator",
+        "The Linear Algebraist",
+        "The Aligner",
+        "The Integrator",
+    }
+    
+    # Assert that all projecting giants are active and have recorded projections
+    assert expected_projected_giants.issubset(projected_giants), f"Missing projected giants: {expected_projected_giants - projected_giants}"
+
+    # Verify that the N-Body Solver has warped space (collapsed edges)
+    collapsed_edges = [
+        (u, v) for u, v, d in bridge.core.graph.edges(data=True) if d.get("collapsed") is True
+    ]
+    assert len(collapsed_edges) > 0, "N-Body Solver was not active (no collapsed edges found)"
+

@@ -53,6 +53,8 @@ class FrontierOSAdapter(FallbackAdapter):
         self.skeptic = None
         self.explainer = None
         self.event_epicenters: dict[str, str] = {}
+        self.sol_engine = None
+        self.sol_available = False
 
     def initialize(self, scenario_id: str) -> None:
         super().initialize(scenario_id)
@@ -94,6 +96,37 @@ class FrontierOSAdapter(FallbackAdapter):
         self.available = True
         self.import_note = f"Frontier_OS manifold active at {resolved_root}"
 
+        # Initialize native SOL Engine with a custom Observant-AI domain graph
+        try:
+            from frontiergrid_observant.sol.sol_engine import SOLEngine
+            raw_nodes = [
+                {"id": 1, "label": "nominal", "group": "nominal", "isConstellation": True},
+                {"id": 2, "label": "shadowing_pattern", "group": "risk", "isConstellation": True},
+                {"id": 3, "label": "littoral_hazard", "group": "risk", "isConstellation": True},
+                {"id": 4, "label": "degraded_comms", "group": "risk", "isConstellation": True},
+                {"id": 5, "label": "source_reliability", "group": "sensor", "isConstellation": True},
+                {"id": 6, "label": "data_quality", "group": "sensor", "isConstellation": True},
+                {"id": 7, "label": "watcher_consensus", "group": "agent", "isConstellation": True},
+                {"id": 8, "label": "risk_escalation", "group": "agent", "isConstellation": True},
+            ]
+            raw_edges = [
+                {"from": 1, "to": 7, "w0": 1.0, "kind": "support"},
+                {"from": 2, "to": 8, "w0": 1.5, "kind": "tax"},
+                {"from": 3, "to": 8, "w0": 1.5, "kind": "tax"},
+                {"from": 4, "to": 8, "w0": 1.2, "kind": "tax"},
+                {"from": 5, "to": 7, "w0": 1.0, "kind": "support"},
+                {"from": 6, "to": 7, "w0": 1.0, "kind": "support"},
+                {"from": 7, "to": 8, "w0": 1.2, "kind": "support"},
+            ]
+            self.sol_engine = SOLEngine.from_graph(raw_nodes, raw_edges, rng_seed=149)
+            self.sol_available = True
+            self.import_note += " | SOL engine integrated natively"
+        except Exception as sol_err:
+            self.sol_available = False
+            self.sol_engine = None
+            self.import_note += f" | SOL engine init failed: {sol_err}"
+
+
     def ingest_event(self, event: ObservantEvent) -> SubstrateTrace:
         self.graph.add_event(event)
         if not self.available or self.bridge is None or self.watcher is None:
@@ -106,6 +139,24 @@ class FrontierOSAdapter(FallbackAdapter):
             manifold_step = self.bridge.ingest_event(event)
             if manifold_step.epicenter_node:
                 self.event_epicenters[event.event_id] = manifold_step.epicenter_node
+            
+            if self.sol_available and self.sol_engine is not None:
+                try:
+                    risk_type_label = event.risk_type
+                    severity = event.ground_truth.severity if event.ground_truth else 0.5
+                    
+                    if risk_type_label in ["shadowing_pattern", "littoral_hazard", "degraded_comms", "nominal"]:
+                        self.sol_engine.inject(risk_type_label, severity * 20.0)
+                    else:
+                        self.sol_engine.inject("risk_escalation", severity * 10.0)
+                    
+                    self.sol_engine.inject("source_reliability", event.source_reliability * 10.0)
+                    dq = float(event.attributes.get("data_quality", event.source_reliability))
+                    self.sol_engine.inject("data_quality", dq * 10.0)
+                    
+                    self.sol_engine.step()
+                except Exception as sol_ing_err:
+                    pass
         except Exception as exc:  # pragma: no cover - exercised by operator environment failures
             trace = super().ingest_event(event)
             trace.substrate = "frontier_os_safe_mode"
@@ -125,6 +176,7 @@ class FrontierOSAdapter(FallbackAdapter):
                 f"epicenter_node={manifold_step.epicenter_node}",
                 f"peak_resonance={manifold_step.peak_resonance:.3f}",
                 f"burst_count={manifold_step.burst_count}",
+                "sol_engine=active" if self.sol_available else "sol_engine=inactive",
             ],
             manifold_metrics=manifold_step.as_trace_metrics(),
         )
@@ -253,6 +305,28 @@ class FrontierOSAdapter(FallbackAdapter):
             )
         )
 
+        federated_alignment_trace = federated_alignment.as_trace()
+        if self.sol_available and self.sol_engine is not None:
+            try:
+                from frontiergrid_observant.sol.sol_intuition import get_intuition
+                context_nodes = [risk_type, "watcher_consensus"]
+                valid_nodes = [n for n in context_nodes if any(node["label"] == n for node in self.sol_engine.physics.nodes)]
+                if valid_nodes:
+                    intuition_result = get_intuition(
+                        self.sol_engine,
+                        context_nodes=valid_nodes,
+                        signal_strength=30.0,
+                        max_steps=50,
+                    )
+                    federated_alignment_trace["sol_intuition"] = {
+                        "hunch": [n["label"] for n in intuition_result.get("hunch", [])],
+                        "confidence": round(intuition_result.get("confidence", 0.0), 3),
+                        "steps_to_coherence": intuition_result.get("steps_to_coherence", 0),
+                        "final_entropy": round(intuition_result.get("final_entropy", 1.0), 3),
+                    }
+            except Exception as sol_int_err:
+                federated_alignment_trace["sol_intuition"] = {"error": str(sol_int_err)}
+
         return [
             AlertCandidate(
                 scenario_id=latest.scenario_id,
@@ -268,7 +342,7 @@ class FrontierOSAdapter(FallbackAdapter):
                 supporting_events=supporting,
                 contradicting_events=contradicting,
                 context_geodesic_alignment=federated_alignment.context_geodesic_score,
-                federated_alignment=federated_alignment.as_trace(),
+                federated_alignment=federated_alignment_trace,
             )
         ]
 
@@ -340,6 +414,8 @@ class FrontierOSAdapter(FallbackAdapter):
                     "candidate_team": candidate.federated_alignment.get("candidate_team", []),
                 }
             )
+            if "sol_intuition" in candidate.federated_alignment:
+                agent_evidence["integrator"].trace["sol_intuition"] = candidate.federated_alignment["sol_intuition"]
 
             severity = score_risk(
                 RiskInputs(

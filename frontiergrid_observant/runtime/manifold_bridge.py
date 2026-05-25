@@ -19,16 +19,9 @@ def clamp(value: float) -> float:
 
 
 def resolve_frontier_os_root(frontier_os_root: Path | None = None) -> Path | None:
-    candidates: list[Path] = []
-    if frontier_os_root is not None:
-        candidates.append(frontier_os_root)
-    workspace_root = Path(__file__).resolve().parents[3]
-    candidates.append(workspace_root / "Frontier_OS-main" / "Frontier_OS-main" / "Exciton-MoA")
-
-    for candidate in candidates:
-        resolved = candidate.expanduser().resolve()
-        if (resolved / "blank_manifold_core.py").exists() and (resolved / "transducer.py").exists():
-            return resolved
+    local_root = Path(__file__).resolve().parent.parent / "exciton_moa"
+    if local_root.exists():
+        return local_root
     return None
 
 
@@ -201,21 +194,23 @@ class FrontierManifoldBridge:
         }
 
     def _load_modules(self) -> dict[str, Any]:
-        root = self.root.expanduser().resolve()
-        if not root.exists():
-            raise FileNotFoundError(f"Frontier_OS root not found: {root}")
-        root_text = str(root)
-        if root_text not in sys.path:
-            sys.path.insert(0, root_text)
+        import numpy as np
+        self.np = np
+        
+        from frontiergrid_observant.exciton_moa.blank_config import BlankManifoldConfig
+        from frontiergrid_observant.exciton_moa.blank_manifold_core import BlankManifoldCore
+        from frontiergrid_observant.exciton_moa.transducer import StatisticalPrism
+        from frontiergrid_observant.exciton_moa.excitons import ExcitonEngine
+        from frontiergrid_observant.exciton_moa.telemetry import OntologicalOrchestrator
+        from frontiergrid_observant.exciton_moa.latent_mediator import LatentMediator
 
-        self.np = importlib.import_module("numpy")
         return {
-            "BlankManifoldConfig": importlib.import_module("blank_config").BlankManifoldConfig,
-            "BlankManifoldCore": importlib.import_module("blank_manifold_core").BlankManifoldCore,
-            "StatisticalPrism": importlib.import_module("transducer").StatisticalPrism,
-            "ExcitonEngine": importlib.import_module("excitons").ExcitonEngine,
-            "OntologicalOrchestrator": importlib.import_module("telemetry").OntologicalOrchestrator,
-            "LatentMediator": importlib.import_module("latent_mediator").LatentMediator,
+            "BlankManifoldConfig": BlankManifoldConfig,
+            "BlankManifoldCore": BlankManifoldCore,
+            "StatisticalPrism": StatisticalPrism,
+            "ExcitonEngine": ExcitonEngine,
+            "OntologicalOrchestrator": OntologicalOrchestrator,
+            "LatentMediator": LatentMediator,
         }
 
     def _collect_step(
