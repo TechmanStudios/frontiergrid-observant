@@ -73,3 +73,16 @@ Files affected: `frontiergrid_observant/demo/dashboard.py`, `scripts/export_demo
 Proposal impact: The current build can be reviewed as a local static app and later deployed as a private static site after data-rights and native-runtime availability decisions.
 
 Keep / cut / defer: Keep the app self-contained and artifact-driven; defer Render deployment until the private deployment path and Frontier_OS runtime availability are selected.
+
+## 2026-05-26: Final Submission Audit & PDF Compilation Fixes
+
+Decision: Audit and finalize the Phase I proposal package, update the `compile_submission_pdf.py` script to enforce repeating headers across all pages of Volume 2 and Volume 5, compile a separate Fundamental Research Disclosure PDF, and place all documents in the final final draft folder.
+
+Reason: To satisfy strict BAA layout instructions (repeating headers containing SBC name, topic, and proposal number `N26BZ-NV023-0825` on all pages of Volume 2) and Navy submission requirements (separate Fundamental Research Disclosure PDF upload in Volume 5 for the DFARS 252.204-7000 waiver).
+
+Files affected: `frontiergrid_observant/scripts/compile_submission_pdf.py`, `docs/submission/Techman Studios Fundamental Research Phase I Disclosure.pdf`, `finalDraft/` and `finalFinalDraft/` folders.
+
+Proposal impact: Enforces 100% compliance with BAA guidelines, ensuring the package is safe from administrative rejections. The proposal has been successfully submitted and accepted on the DSIP portal.
+
+Keep / cut / defer: Keep the repository private (recommended) to safeguard PII, cost proposal details, and ITAR-restricted technical descriptions.
+

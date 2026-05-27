@@ -18,7 +18,7 @@ This working draft outlines the Phase I Cost Proposal (Volume 3) for Techman Stu
 | **Direct Materials & Supplies** | $3,000.00 | $1,000.00 | $4,000.00 |
 | **Travel** | $2,500.00 | $1,500.00 | $4,000.00 |
 | **Subcontractors & Consultants** | $0.00 | $0.00 | $0.00 |
-| **Technical & Business Assistance (TABA)** | $6,500.00 | $0.00 | $6,500.00 |
+| **Technical & Business Assistance (TABA)** | $0.00 | $0.00 | $0.00 |
 | **General & Administrative (G&A)** | $11,535.00 | $2,293.30 | $13,828.30 |
 | **Fee / Profit** | $12,688.50 | $5,970.60 | $18,659.10 |
 | **Total Proposed Price** | **$139,573.50** | **$99,995.90** | **$239,569.40** |
@@ -62,9 +62,8 @@ This working draft outlines the Phase I Cost Proposal (Volume 3) for Techman Stu
 *   **Total Subcontractors**: **$0.00**
 
 ### G. Technical and Business Assistance (TABA)
-*   **TABA Service Provider**: To be selected post-award from approved commercial vendors.
-*   **Use of Funds**: Specifically requested for IP protection (patent landscape analysis, filing assistance), commercialization roadmap development, and DoD customer transition identification.
-*   **Total TABA**: **$6,500.00**
+*   **None**. No TABA funding is requested for this effort.
+*   **Total TABA**: **$0.00**
 
 ### H. General & Administrative (G&A)
 *   **Rate**: 10% of Subtotal ($115,350.00).
@@ -127,5 +126,5 @@ This working draft outlines the Phase I Cost Proposal (Volume 3) for Techman Stu
 *   **[x] Option Period Cap**: Total Proposed Option Period cost of **$99,995.90** is under the BAA limit of **$100,000.00**.
 *   **[x] Work Share Compliance**: Techman Studios performs **100%** of the project labor (exceeding the SBIR requirement that the small business perform at least two-thirds of the work).
 *   **[x] No Cost Sharing**: No cost sharing or co-funding is proposed, matching the Navy SBIR guidelines.
-*   **[x] TABA Request**: A specific request for **$6,500.00** in TABA funds is included in the Base Period for commercialization and intellectual property support.
+*   **[x] TABA Request**: No TABA funding is requested, satisfying the option to omit TABA to maintain compliance and avoid portal submission errors.
 *   **[x] Consistency**: Personnel names, roles, effort percentages, and SOW tasks match the details in the Technical Proposal (Volume 2) and SOW.
