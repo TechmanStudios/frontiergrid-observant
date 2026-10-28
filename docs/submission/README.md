@@ -4,6 +4,7 @@ Working proposal-support files for DON26BZ01-NV023. These are drafting aids, not
 
 ## Start Here
 
+- [Current entity administrative reference (reviewed 2026-10-28)](current_entity_administration.md): sourced values and verification gaps for future proposal reuse after the 2026-10-27 SAM activation. The May 2026 cover sheet, intake entries, and compiled documents retain historical values; do not copy their administrative fields without this reference.
 - `phase_i_submission_checklist.md`: practical DSIP and proposal-volume checklist.
 - `volume_2_10_page_submission_draft.md`: compact working source for the final 10-page Technical Proposal.
 - `volume_2_technical_draft.md`: longer source draft and backup language bank.

@@ -1,5 +1,7 @@
 ﻿# Proposal Placeholder Intake
 
+> **Administrative reuse notice - 2026-10-28:** The original May 2026 intake entries below are retained for historical comparison. For future reuse, use the [current entity administrative reference](current_entity_administration.md) for the legal offeror name, dated SAM status/annual renewal date, primary NAICS, physical address, and principal place of business. It identifies remaining verification gaps. Alabama remains the formation state; mailing, remittance, and proposed performance locations have separate purposes. This notice does not establish what was submitted in DSIP.
+
 Fill this file with the company, personnel, administrative, and compliance facts needed to finalize the proposal placeholders. Use `None` when an item does not apply and `TBD` when you want me to leave it open.
 
 Do not put passwords, API keys, bank account numbers, Social Security numbers, dates of birth, classified information, CUI, real operational data, or credentials in this file. For sensitive business identifiers such as EIN/TIN, write `DSIP only` if you prefer to enter them directly in the portal.
