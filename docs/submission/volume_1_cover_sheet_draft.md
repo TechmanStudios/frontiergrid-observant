@@ -1,5 +1,7 @@
 # Volume 1: Proposal Cover Sheet Draft
 
+> **Administrative reuse notice - 2026-10-28:** The original May 2026 draft text below is retained for historical comparison. Its legal name, SAM renewal/expiration entry, primary NAICS choices, and physical business address are superseded for future reuse by the [current entity administrative reference](current_entity_administration.md). That reference distinguishes registration evidence from owner-reported information and preserves Alabama as the formation state. The proposed place of performance requires a separate decision; the business address change does not revise it automatically. This notice does not establish what was submitted in DSIP.
+
 Use this document as a quick reference sheet while filling out the electronic forms (e-forms) for Volume 1 in the DSIP submission portal.
 
 ---
